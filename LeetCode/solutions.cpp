@@ -17,18 +17,18 @@ std::vector<int> two_sum(const std::vector<int> &nums, int target) {
   return {};
 }
 
-int max_profit(vector<int>& prices) {
+int max_profit(std::vector<int>& prices) {
   int min_price = prices[0];
   int maxprof = 0;
   for (int i = 1; i < prices.size(); i++) {
-    maxprof = max(maxprof, prices[i]-min_price);
-    min_price = min(prices[i], min_price);
+    maxprof = std::max(maxprof, prices[i]-min_price);
+    min_price = std::min(prices[i], min_price);
   }
   return maxprof;
 }
 
-vector<int> product_except_self(vector<int> &nums) {
-  vector<int>res(nums.size(), 1);
+std::vector<int> product_except_self(std::vector<int> &nums) {
+  std::vector<int>res(nums.size(), 1);
   for(int i = 1; i < nums.size(); i++)
     res[i] = res[i-1] * nums[i-1];
   int right = 1;
@@ -37,4 +37,14 @@ vector<int> product_except_self(vector<int> &nums) {
     right *= nums[i];
   }
   return res;
+}
+
+int max_sub_array(std::vector<int>& nums) {
+  int maxSum = nums[0];
+  int currentSum = nums[0];
+  for (int i = 1; i < nums.size(); i++) {
+    currentSum = std::max(nums[i], currentSum + nums[i]);
+    maxSum = std::max(maxSum, currentSum);
+  }
+  return maxSum;
 }
